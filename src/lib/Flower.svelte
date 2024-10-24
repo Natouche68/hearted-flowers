@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { currentColorTheme } from "./colorThemes";
 	import Heart from "./Heart.svelte";
 
 	type Props = {
@@ -40,7 +41,9 @@
 			y={flower?.top.y ?? 0}
 			scale={(flower?.petalScale ?? 0) + Math.random() * 5}
 			rotation={i * (360 / 5) + Math.random() * 20}
-			fill="petal-{Math.floor(Math.random() * 4)}"
+			fill="petal-{Math.floor(
+				Math.random() * $currentColorTheme.petals.length
+			)}"
 			originOffset={90}
 			transformOffset={90}
 			apparitionDelay={2 + Math.random()}

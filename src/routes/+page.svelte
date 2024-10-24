@@ -48,7 +48,8 @@
 </script>
 
 <div
-	class="h-dvh flex justify-center items-center bg-[{$currentColorTheme.background}]"
+	class="h-dvh flex justify-center items-center"
+	style="background: {$currentColorTheme.background};"
 >
 	<svg
 		viewBox="0 0 100 100"
