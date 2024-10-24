@@ -5,13 +5,23 @@
 		scale: number;
 		rotation: number;
 		fill: string;
+		originOffset?: number;
+		transformOffset?: number;
 	};
-	let { x, y, scale, rotation, fill }: Props = $props();
+	let {
+		x,
+		y,
+		scale,
+		rotation,
+		fill,
+		originOffset = 97,
+		transformOffset = 95,
+	}: Props = $props();
 </script>
 
 <g
-	transform-origin="50% 90%"
-	transform="translate({x - 50} {y - 90}) scale({scale /
+	transform-origin="50% {originOffset}%"
+	transform="translate({x - 50} {y - transformOffset}) scale({scale /
 		100}) rotate({rotation})"
 >
 	<path

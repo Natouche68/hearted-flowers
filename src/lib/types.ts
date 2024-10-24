@@ -8,4 +8,5 @@ type FlowerObject = {
 		y: number;
 	};
 	petalScale: number;
+	leafScale: number;
 };

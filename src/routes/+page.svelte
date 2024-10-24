@@ -17,6 +17,7 @@
 				y: 30 + Math.random() * 10,
 			},
 			petalScale: 10,
+			leafScale: 5,
 		};
 		centerFlower = {
 			base: {
@@ -28,6 +29,7 @@
 				y: 15 + Math.random() * 10,
 			},
 			petalScale: 15,
+			leafScale: 7,
 		};
 		rightFlower = {
 			base: {
@@ -39,6 +41,7 @@
 				y: 30 + Math.random() * 10,
 			},
 			petalScale: 10,
+			leafScale: 5,
 		};
 	});
 </script>
@@ -48,6 +51,11 @@
 		viewBox="0 0 100 100"
 		class="m-6 object-contain max-w-2xl overflow-visible"
 	>
+		<linearGradient id="leaf" x1="50%" y1="0%" x2="50%" y2="100%">
+			<stop offset="0%" stop-color="#37d278dd" />
+			<stop offset="100%" stop-color="#37d27811" />
+		</linearGradient>
+
 		<linearGradient id="stem" x1="50%" y1="0%" x2="50%" y2="100%">
 			<stop offset="0%" stop-color="#37d27822" />
 			<stop offset="4%" stop-color="#37d278ee" />
