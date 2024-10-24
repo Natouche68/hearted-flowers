@@ -10,3 +10,9 @@ type FlowerObject = {
 	petalScale: number;
 	leafScale: number;
 };
+
+type ColorTheme = {
+	background: string;
+	leaf: string;
+	petals: string[];
+};

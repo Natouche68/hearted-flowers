@@ -40,7 +40,7 @@
 			y={flower?.top.y ?? 0}
 			scale={(flower?.petalScale ?? 0) + Math.random() * 5}
 			rotation={i * (360 / 5) + Math.random() * 20}
-			fill="petal"
+			fill="petal-{Math.floor(Math.random() * 4)}"
 			originOffset={90}
 			transformOffset={90}
 			apparitionDelay={2 + Math.random()}

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from "svelte";
+	import { currentColorTheme } from "$lib/colorThemes";
 	import Flower from "$lib/Flower.svelte";
 
 	let leftFlower = $state<FlowerObject>();
@@ -46,26 +47,30 @@
 	});
 </script>
 
-<div class="h-dvh flex justify-center items-center bg-[#272932]">
+<div
+	class="h-dvh flex justify-center items-center bg-[{$currentColorTheme.background}]"
+>
 	<svg
 		viewBox="0 0 100 100"
 		class="m-6 object-contain max-w-2xl overflow-visible"
 	>
 		<linearGradient id="leaf" x1="50%" y1="0%" x2="50%" y2="100%">
-			<stop offset="0%" stop-color="#37d278dd" />
-			<stop offset="100%" stop-color="#37d27811" />
+			<stop offset="0%" stop-color="{$currentColorTheme.leaf}dd" />
+			<stop offset="100%" stop-color="{$currentColorTheme.leaf}11" />
 		</linearGradient>
 
 		<linearGradient id="stem" x1="50%" y1="0%" x2="50%" y2="100%">
-			<stop offset="0%" stop-color="#37d27822" />
-			<stop offset="4%" stop-color="#37d278ee" />
-			<stop offset="100%" stop-color="#37d27822" />
+			<stop offset="0%" stop-color="{$currentColorTheme.leaf}22" />
+			<stop offset="4%" stop-color="{$currentColorTheme.leaf}ee" />
+			<stop offset="100%" stop-color="{$currentColorTheme.leaf}22" />
 		</linearGradient>
 
-		<linearGradient id="petal" x1="50%" y1="0%" x2="50%" y2="100%">
-			<stop offset="0%" stop-color="#f49097ee" />
-			<stop offset="100%" stop-color="#f4909744" />
-		</linearGradient>
+		{#each $currentColorTheme.petals as petalColor, i}
+			<linearGradient id="petal-{i}" x1="50%" y1="0%" x2="50%" y2="100%">
+				<stop offset="0%" stop-color="{petalColor}ee" />
+				<stop offset="100%" stop-color="{petalColor}44" />
+			</linearGradient>
+		{/each}
 
 		<Flower flower={leftFlower} />
 		<Flower flower={centerFlower} />
