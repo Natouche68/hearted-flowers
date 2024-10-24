@@ -77,7 +77,7 @@
 <style>
 	.flower {
 		animation:
-			flower-appearing calc(var(--rotation-duration) / 2) 0.4s ease,
+			flower-appearing calc(var(--rotation-duration) / 2) 0.4s ease backwards,
 			flower-rotating var(--rotation-duration)
 				calc(var(--rotation-duration) / 2 + 0.4s) ease infinite;
 	}
