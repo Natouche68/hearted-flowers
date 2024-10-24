@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from "svelte";
+	import Heart from "$lib/Heart.svelte";
 
 	type Flower = {
 		base: {
@@ -51,7 +52,10 @@
 </script>
 
 <div class="h-dvh flex justify-center items-center bg-[#272932]">
-	<svg viewBox="0 0 100 100" class="m-6 object-contain max-w-xl border-2">
+	<svg
+		viewBox="0 0 100 100"
+		class="m-6 object-contain max-w-xl border-2 overflow-visible"
+	>
 		<line
 			x1={leftFlower?.base.x}
 			y1={leftFlower?.base.y}
@@ -59,6 +63,11 @@
 			y2={leftFlower?.top.y}
 			stroke="#37d278"
 			stroke-width="2"
+		/>
+		<Heart
+			x={leftFlower?.top.x ?? 0}
+			y={leftFlower?.top.y ?? 0}
+			scale={12 + Math.random() * 5}
 		/>
 
 		<line
@@ -69,6 +78,11 @@
 			stroke="#37d278"
 			stroke-width="2"
 		/>
+		<Heart
+			x={centerFlower?.top.x ?? 0}
+			y={centerFlower?.top.y ?? 0}
+			scale={18 + Math.random() * 5}
+		/>
 
 		<line
 			x1={rightFlower?.base.x}
@@ -77,6 +91,11 @@
 			y2={rightFlower?.top.y}
 			stroke="#37d278"
 			stroke-width="2"
+		/>
+		<Heart
+			x={rightFlower?.top.x ?? 0}
+			y={rightFlower?.top.y ?? 0}
+			scale={12 + Math.random() * 5}
 		/>
 	</svg>
 </div>
