@@ -7,6 +7,7 @@
 		fill: string;
 		originOffset?: number;
 		transformOffset?: number;
+		apparitionDelay?: number;
 	};
 	let {
 		x,
@@ -16,6 +17,7 @@
 		fill,
 		originOffset = 97,
 		transformOffset = 95,
+		apparitionDelay = 2,
 	}: Props = $props();
 </script>
 
@@ -29,13 +31,29 @@
 		fill="url(#{fill})"
 		transform-origin="50 97"
 		class="heart"
-		style="--rotation-duration: {4 + Math.random() * 6}s;"
+		style="--rotation-duration: {4 +
+			Math.random() * 6}s; --apparition-delay: {apparitionDelay}s;"
 	/>
 </g>
 
 <style>
 	.heart {
-		animation: heart-rotating var(--rotation-duration) ease infinite;
+		animation:
+			heart-appearing calc(var(--rotation-duration) / 2) var(--apparition-delay)
+				ease backwards,
+			heart-rotating var(--rotation-duration)
+				calc(var(--rotation-duration) / 2 + var(--apparition-delay)) ease
+				infinite;
+	}
+
+	@keyframes heart-appearing {
+		from {
+			transform: rotate(0deg) scale(0);
+		}
+
+		to {
+			transform: rotate(-3deg) scale(1);
+		}
 	}
 
 	@keyframes heart-rotating {

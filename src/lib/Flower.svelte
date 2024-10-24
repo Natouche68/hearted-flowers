@@ -43,6 +43,7 @@
 			fill="petal"
 			originOffset={90}
 			transformOffset={90}
+			apparitionDelay={2 + Math.random()}
 		/>
 	{/each}
 
@@ -55,6 +56,7 @@
 			scale={(flower?.leafScale ?? 0) + Math.random() * 3}
 			rotation={angle * (180 / Math.PI) + 45 + Math.random() * 20}
 			fill="leaf"
+			apparitionDelay={1 + Math.random() * 2}
 		/>
 		<Heart
 			x={(stemLength * 0.2 * (i + 1) + Math.random() * 5) * Math.cos(angle) +
@@ -64,13 +66,27 @@
 			scale={(flower?.leafScale ?? 0) + Math.random() * 3}
 			rotation={angle * (180 / Math.PI) + 125 + Math.random() * 20}
 			fill="leaf"
+			apparitionDelay={1 + Math.random() * 2}
 		/>
 	{/each}
 </g>
 
 <style>
 	.flower {
-		animation: flower-rotating var(--rotation-duration) ease infinite;
+		animation:
+			flower-appearing calc(var(--rotation-duration) / 2) 0.4s ease,
+			flower-rotating var(--rotation-duration)
+				calc(var(--rotation-duration) / 2 + 0.4s) ease infinite;
+	}
+
+	@keyframes flower-appearing {
+		from {
+			transform: rotate(0deg) scale(0);
+		}
+
+		to {
+			transform: rotate(-1deg) scale(1);
+		}
 	}
 
 	@keyframes flower-rotating {
