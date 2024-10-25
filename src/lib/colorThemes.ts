@@ -12,17 +12,17 @@ export const colorThemes: ColorTheme[] = [
 		petals: ["#FCFF6C", "#FFE86B", "#FCF46C", "#FCFF51"],
 	},
 	{
-		background: "#4F4762",
+		background: "#383246",
 		leaf: "#23CE6B",
 		petals: ["#EA7AF4", "#D67AF5", "#F57AEA", "#E663F2"],
 	},
 	{
-		background: "#246464",
+		background: "#1A4848",
 		leaf: "#9CFC97",
 		petals: ["#FF8552", "#FF6852", "#FFA352", "#FF753A"],
 	},
 	{
-		background: "#7F516E",
+		background: "#523447",
 		leaf: "#BCE7FD",
 		petals: ["#F7EF81", "#F7DB81", "#F7E781", "#F5EC69"],
 	},
