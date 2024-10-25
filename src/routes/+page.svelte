@@ -95,7 +95,7 @@
 
 	<a
 		href="/edit?colorTheme={getColorThemeIndex()}"
-		class="fixed top-4 right-4 font-serif"
+		class="fixed top-4 right-4 font-serif text-sm"
 		style="color: {$currentColorTheme.leaf};"
 	>
 		Edit
