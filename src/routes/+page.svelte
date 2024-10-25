@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { currentColorTheme } from "$lib/colorThemes";
+	import { currentColorTheme, colorThemes } from "$lib/colorThemes";
 	import Flower from "$lib/Flower.svelte";
 
 	let leftFlower = $state<FlowerObject>();
@@ -45,6 +45,21 @@
 			leafScale: 5,
 		};
 	});
+
+	function getColorThemeIndex() {
+		let colorThemeIndex = 0;
+
+		colorThemes.forEach((colorTheme, i) => {
+			if (
+				$currentColorTheme.background === colorTheme.background &&
+				$currentColorTheme.leaf === colorTheme.leaf
+			) {
+				colorThemeIndex = i;
+			}
+		});
+
+		return colorThemeIndex;
+	}
 </script>
 
 <div
@@ -77,4 +92,12 @@
 		<Flower flower={centerFlower} />
 		<Flower flower={rightFlower} />
 	</svg>
+
+	<a
+		href="/edit?colorTheme={getColorThemeIndex()}"
+		class="fixed top-4 right-4 font-serif"
+		style="color: {$currentColorTheme.leaf};"
+	>
+		Edit
+	</a>
 </div>

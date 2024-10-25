@@ -1,6 +1,10 @@
 <script lang="ts">
 	import '../app.css';
-	let { children } = $props();
+	import { currentColorTheme, colorThemes } from '$lib/colorThemes';
+
+	let { children, data } = $props();
+
+	currentColorTheme.set(colorThemes[data.colorThemeId]);
 </script>
 
 <svelte:head>
