@@ -7,9 +7,9 @@ export const colorThemes: ColorTheme[] = [
 		petals: ["#F49097", "#F590A8", "#F59B90", "#F1767F"],
 	},
 	{
-		background: "#006B92",
-		leaf: "#C6FF89",
-		petals: ["#FCFF6C", "#FFE86B", "#FCF46C", "#FCFF51"],
+		background: "#12355B",
+		leaf: "#49D49D",
+		petals: ["#5CC8FF", "#5CADFF", "#5CC0FF", "#43C0FF"],
 	},
 	{
 		background: "#383246",
