@@ -1,11 +1,15 @@
-import type { Config } from 'tailwindcss';
+import type { Config } from "tailwindcss";
 
 export default {
-  content: ['./src/**/*.{html,js,svelte,ts}'],
+	content: ["./src/**/*.{html,js,svelte,ts}"],
 
-  theme: {
-    extend: {}
-  },
+	theme: {
+		extend: {
+			fontFamily: {
+				serif: ["Neuton", "ui-serif", "serif"],
+			},
+		},
+	},
 
-  plugins: []
+	plugins: [],
 } as Config;
