@@ -66,10 +66,7 @@
 	class="h-dvh flex justify-center items-center"
 	style="background: {$currentColorTheme.background};"
 >
-	<svg
-		viewBox="0 0 100 100"
-		class="m-6 object-contain max-w-2xl overflow-visible"
-	>
+	<svg viewBox="0 0 100 100" class="object-contain max-w-2xl overflow-visible">
 		<linearGradient id="leaf" x1="50%" y1="0%" x2="50%" y2="100%">
 			<stop offset="0%" stop-color="{$currentColorTheme.leaf}dd" />
 			<stop offset="100%" stop-color="{$currentColorTheme.leaf}11" />
