@@ -70,7 +70,7 @@
 	</div>
 	<a
 		href="/?colorTheme={getColorThemeIndex()}"
-		class="fixed bottom-4 left-4 right-4 p-4 font-serif font-bold text-2xl text-center transition"
+		class="fixed bottom-4 left-4 right-4 p-4 font-serif font-bold text-xl text-center transition"
 		style="background: {$currentColorTheme.leaf}; color: {$currentColorTheme.background};"
 	>
 		See the result
