@@ -36,6 +36,11 @@ export const colorThemes: ColorTheme[] = [
 		leaf: "#5AAB67",
 		petals: ["#FCFF6C", "#FFE86B", "#FCF46C", "#FCFF51"],
 	},
+	{
+		background: "#001427",
+		leaf: "#51CB20",
+		petals: ["#F2545B", "#F26855", "#F13F47", "#EF2933"],
+	},
 ];
 
 export const currentColorTheme = writable(colorThemes[0]);
