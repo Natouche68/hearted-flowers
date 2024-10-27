@@ -12,7 +12,7 @@ type FlowerObject = {
 };
 
 type ColorTheme = {
-	background: string;
+	background: string[];
 	leaf: string;
 	petals: string[];
 };

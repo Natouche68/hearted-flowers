@@ -20,7 +20,7 @@
 
 <div
 	class="min-h-dvh p-4 transition"
-	style="background: {$currentColorTheme.background};"
+	style="background: {$currentColorTheme.background[0]};"
 >
 	<h1
 		class="my-4 pb-2 font-serif font-bold text-4xl border-b-2 transition"
@@ -37,7 +37,7 @@
 				}}
 			>
 				<div class="w-full flex flex-row justify-center items-center">
-					<div class="w-full" style="background: {colorTheme.background};">
+					<div class="w-full" style="background: {colorTheme.background[0]};">
 						{i}
 					</div>
 					<div class="w-full" style="background: {colorTheme.leaf};">{i}</div>
@@ -71,7 +71,8 @@
 	<a
 		href="/?colorTheme={getColorThemeIndex()}"
 		class="fixed bottom-4 left-4 right-4 p-4 font-serif font-bold text-xl text-center transition"
-		style="background: {$currentColorTheme.leaf}; color: {$currentColorTheme.background};"
+		style="background: {$currentColorTheme.leaf}; color: {$currentColorTheme
+			.background[0]};"
 	>
 		See the result
 	</a>
