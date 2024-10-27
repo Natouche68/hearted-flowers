@@ -54,4 +54,3 @@ export const colorThemes: ColorTheme[] = [
 ];
 
 export const currentColorTheme = writable(colorThemes[0]);
-export const noAnimations = writable(false);
