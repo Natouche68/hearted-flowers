@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { currentColorTheme } from "./colorThemes";
+	import { currentColorTheme, noAnimations } from "./colorThemes";
 	import Heart from "./Heart.svelte";
 
 	type Props = {
@@ -23,7 +23,7 @@
 
 <g
 	transform-origin="{flower?.base.x ?? 0} {flower?.base.y ?? 0}"
-	class="flower"
+	class={$noAnimations ? "" : "flower"}
 	style="--rotation-duration: {8 + Math.random() * 4}s;"
 >
 	<line
