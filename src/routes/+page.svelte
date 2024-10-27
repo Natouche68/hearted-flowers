@@ -7,6 +7,11 @@
 	let centerFlower = $state<FlowerObject>();
 	let rightFlower = $state<FlowerObject>();
 
+	let width = $state<number>(100);
+	let height = $state<number>(100);
+	let svgElement: SVGElement;
+	let canvasElement: HTMLCanvasElement;
+
 	onMount(() => {
 		leftFlower = {
 			base: {
@@ -60,14 +65,54 @@
 
 		return colorThemeIndex;
 	}
+
+	function generateImage() {
+		let size = 100;
+		if (width > height) {
+			size = height;
+		} else {
+			size = width;
+		}
+
+		const img = new Image();
+		img.onload = () => {
+			const ctx = canvasElement.getContext("2d") as CanvasRenderingContext2D;
+
+			const gradient = ctx.createLinearGradient(0, 0, 0, height);
+			gradient.addColorStop(0, $currentColorTheme.background[1]);
+			gradient.addColorStop(1, $currentColorTheme.background[0]);
+			ctx.fillStyle = gradient;
+			ctx.fillRect(0, 0, width, height);
+
+			ctx.drawImage(img, (width - size) / 2, (height - size) / 2, size, size);
+
+			const png = canvasElement.toDataURL("image/png");
+			const link = document.createElement("a");
+			link.download = "flowers.png";
+			link.href = png;
+			link.click();
+		};
+
+		const svgString = new XMLSerializer().serializeToString(svgElement);
+		var url = URL.createObjectURL(
+			new Blob([svgString], { type: "image/svg+xml" })
+		);
+		img.src = url;
+	}
 </script>
 
+<svelte:window bind:innerHeight={height} bind:innerWidth={width} />
+
 <div
-	class="h-screen flex justify-center items-center"
+	class="h-screen flex justify-center items-center overflow-hidden"
 	style="background: linear-gradient({$currentColorTheme
 		.background[1]}, {$currentColorTheme.background[0]});"
 >
-	<svg viewBox="0 0 100 100" class="object-contain max-w-2xl overflow-visible">
+	<svg
+		viewBox="0 0 100 100"
+		class="object-contain max-w-2xl overflow-visible"
+		bind:this={svgElement}
+	>
 		<linearGradient id="leaf" x1="50%" y1="0%" x2="50%" y2="100%">
 			<stop offset="0%" stop-color="{$currentColorTheme.leaf}dd" />
 			<stop offset="100%" stop-color="{$currentColorTheme.leaf}11" />
@@ -91,11 +136,19 @@
 		<Flower flower={rightFlower} />
 	</svg>
 
-	<a
-		href="/edit?colorTheme={getColorThemeIndex()}"
-		class="fixed top-4 right-4 font-serif text-sm"
-		style="color: {$currentColorTheme.leaf};"
+	<div
+		class="fixed top-4 right-4 flex flex-col justify-start items-end font-serif text-md"
 	>
-		Edit
-	</a>
+		<a
+			href="/edit?colorTheme={getColorThemeIndex()}"
+			style="color: {$currentColorTheme.leaf};"
+		>
+			Edit
+		</a>
+		<button style="color: {$currentColorTheme.leaf};" onclick={generateImage}>
+			Save image
+		</button>
+	</div>
+
+	<canvas bind:this={canvasElement} {width} {height} class="hidden"></canvas>
 </div>
