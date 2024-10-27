@@ -63,7 +63,7 @@
 </script>
 
 <div
-	class="h-dvh flex justify-center items-center"
+	class="h-screen flex justify-center items-center"
 	style="background: linear-gradient({$currentColorTheme
 		.background[1]}, {$currentColorTheme.background[0]});"
 >
