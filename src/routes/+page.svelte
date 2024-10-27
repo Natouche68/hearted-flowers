@@ -91,11 +91,16 @@
 		<Flower flower={rightFlower} />
 	</svg>
 
-	<a
-		href="/edit?colorTheme={getColorThemeIndex()}"
-		class="fixed top-4 right-4 font-serif text-sm"
-		style="color: {$currentColorTheme.leaf};"
+	<div
+		id="to-hide"
+		class="fixed top-4 right-4 flex flex-col justify-start items-end"
 	>
-		Edit
-	</a>
+		<a
+			href="/edit?colorTheme={getColorThemeIndex()}"
+			class="font-serif text-sm"
+			style="color: {$currentColorTheme.leaf};"
+		>
+			Edit
+		</a>
+	</div>
 </div>
