@@ -7,6 +7,10 @@
 	let centerFlower = $state<FlowerObject>();
 	let rightFlower = $state<FlowerObject>();
 
+	let width = $state<number>();
+	let height = $state<number>();
+	let scaleFactor = $state<number>();
+
 	onMount(() => {
 		leftFlower = {
 			base: {
@@ -62,6 +66,12 @@
 	}
 </script>
 
+<svelte:window
+	bind:innerWidth={width}
+	bind:innerHeight={height}
+	bind:devicePixelRatio={scaleFactor}
+/>
+
 <div
 	class="h-dvh flex justify-center items-center"
 	style="background: linear-gradient({$currentColorTheme
@@ -101,6 +111,14 @@
 			style="color: {$currentColorTheme.leaf};"
 		>
 			Edit
+		</a>
+		<a
+			href="/screenshot?colorTheme={getColorThemeIndex()}&width={width}&height={height}&deviceScaleFactor={scaleFactor}"
+			download="flowers.png"
+			class="font-serif text-sm"
+			style="color: {$currentColorTheme.leaf};"
+		>
+			Save image
 		</a>
 	</div>
 </div>
