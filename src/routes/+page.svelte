@@ -101,7 +101,7 @@
 	}
 </script>
 
-<svelte:window bind:innerHeight={height} bind:innerWidth={width} />
+<svelte:window bind:outerHeight={height} bind:outerWidth={width} />
 
 <div
 	class="h-screen flex justify-center items-center overflow-hidden"
