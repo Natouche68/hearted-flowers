@@ -9,6 +9,7 @@
 
 	let width = $state<number>(100);
 	let height = $state<number>(100);
+	let pixelRatio = $state<number>(1);
 	let svgElement: SVGElement;
 	let canvasElement: HTMLCanvasElement;
 
@@ -69,22 +70,28 @@
 	function generateImage() {
 		let size = 100;
 		if (width > height) {
-			size = height;
+			size = height * pixelRatio;
 		} else {
-			size = width;
+			size = width * pixelRatio;
 		}
 
 		const img = new Image();
 		img.onload = () => {
 			const ctx = canvasElement.getContext("2d") as CanvasRenderingContext2D;
 
-			const gradient = ctx.createLinearGradient(0, 0, 0, height);
+			const gradient = ctx.createLinearGradient(0, 0, 0, height * pixelRatio);
 			gradient.addColorStop(0, $currentColorTheme.background[1]);
 			gradient.addColorStop(1, $currentColorTheme.background[0]);
 			ctx.fillStyle = gradient;
-			ctx.fillRect(0, 0, width, height);
+			ctx.fillRect(0, 0, width * pixelRatio, height * pixelRatio);
 
-			ctx.drawImage(img, (width - size) / 2, (height - size) / 2, size, size);
+			ctx.drawImage(
+				img,
+				(width * pixelRatio - size) / 2,
+				(height * pixelRatio - size) / 2,
+				size,
+				size
+			);
 
 			const png = canvasElement.toDataURL("image/png");
 			const link = document.createElement("a");
@@ -101,7 +108,11 @@
 	}
 </script>
 
-<svelte:window bind:outerHeight={height} bind:outerWidth={width} />
+<svelte:window
+	bind:outerHeight={height}
+	bind:outerWidth={width}
+	bind:devicePixelRatio={pixelRatio}
+/>
 
 <div
 	class="h-screen flex justify-center items-center overflow-hidden"
@@ -150,5 +161,10 @@
 		</button>
 	</div>
 
-	<canvas bind:this={canvasElement} {width} {height} class="hidden"></canvas>
+	<canvas
+		bind:this={canvasElement}
+		width={width * pixelRatio}
+		height={height * pixelRatio}
+		class="hidden"
+	></canvas>
 </div>
