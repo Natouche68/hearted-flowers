@@ -1,5 +1,9 @@
 <script lang="ts">
-	import { currentColorTheme, colorThemes } from "$lib/colorThemes";
+	import {
+		currentColorTheme,
+		colorThemes,
+		blackBackground,
+	} from "$lib/colorThemes";
 	import { fade } from "svelte/transition";
 
 	function getColorThemeIndex() {
@@ -20,7 +24,9 @@
 
 <div
 	class="min-h-dvh p-4 transition"
-	style="background: {$currentColorTheme.background[0]};"
+	style="background: {$blackBackground
+		? '#000'
+		: $currentColorTheme.background[0]};"
 >
 	<h1
 		class="my-4 pb-2 font-serif font-bold text-4xl border-b-2 transition"
@@ -28,6 +34,22 @@
 	>
 		Customize your Hearted Flowers
 	</h1>
+	<div class="flex flex-row justify-start items-center gap-2">
+		<input
+			type="checkbox"
+			id="blackBackground"
+			bind:checked={$blackBackground}
+			class="size-6 transition"
+			style="accent-color: {$currentColorTheme.leaf};"
+		/>
+		<label
+			for="blackBackground"
+			class="font-serif text-xl trasnition"
+			style="color: {$currentColorTheme.leaf};"
+		>
+			Black background
+		</label>
+	</div>
 	<div class="my-8 grid grid-cols-2 gap-4">
 		{#each colorThemes as colorTheme, i}
 			<button
@@ -69,7 +91,9 @@
 		{/each}
 	</div>
 	<a
-		href="/?colorTheme={getColorThemeIndex()}"
+		href="/?colorTheme={getColorThemeIndex()}{$blackBackground
+			? '&blackBackground'
+			: ''}"
 		class="fixed bottom-4 left-4 right-4 p-4 font-serif font-bold text-xl text-center transition"
 		style="background: {$currentColorTheme.leaf}; color: {$currentColorTheme
 			.background[0]};"

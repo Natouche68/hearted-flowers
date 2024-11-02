@@ -1,6 +1,10 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { currentColorTheme, colorThemes } from "$lib/colorThemes";
+	import {
+		currentColorTheme,
+		colorThemes,
+		blackBackground,
+	} from "$lib/colorThemes";
 	import Flower from "$lib/Flower.svelte";
 
 	let leftFlower = $state<FlowerObject>();
@@ -79,11 +83,16 @@
 		img.onload = () => {
 			const ctx = canvasElement.getContext("2d") as CanvasRenderingContext2D;
 
-			const gradient = ctx.createLinearGradient(0, 0, 0, height * pixelRatio);
-			gradient.addColorStop(0, $currentColorTheme.background[1]);
-			gradient.addColorStop(1, $currentColorTheme.background[0]);
-			ctx.fillStyle = gradient;
-			ctx.fillRect(0, 0, width * pixelRatio, height * pixelRatio);
+			if ($blackBackground) {
+				ctx.fillStyle = "#000";
+				ctx.fillRect(0, 0, width * pixelRatio, height * pixelRatio);
+			} else {
+				const gradient = ctx.createLinearGradient(0, 0, 0, height * pixelRatio);
+				gradient.addColorStop(0, $currentColorTheme.background[1]);
+				gradient.addColorStop(1, $currentColorTheme.background[0]);
+				ctx.fillStyle = gradient;
+				ctx.fillRect(0, 0, width * pixelRatio, height * pixelRatio);
+			}
 
 			ctx.drawImage(
 				img,
@@ -116,8 +125,9 @@
 
 <div
 	class="h-screen flex justify-center items-center overflow-hidden"
-	style="background: linear-gradient({$currentColorTheme
-		.background[1]}, {$currentColorTheme.background[0]});"
+	style="background: {$blackBackground
+		? '#000'
+		: `linear-gradient(${$currentColorTheme.background[1]}, ${$currentColorTheme.background[0]})`};"
 >
 	<svg
 		viewBox="0 0 100 100"
@@ -151,7 +161,9 @@
 		class="fixed top-4 right-4 flex flex-col justify-start items-end font-serif text-md"
 	>
 		<a
-			href="/edit?colorTheme={getColorThemeIndex()}"
+			href="/edit?colorTheme={getColorThemeIndex()}{$blackBackground
+				? '&blackBackground'
+				: ''}"
 			style="color: {$currentColorTheme.leaf};"
 		>
 			Edit
